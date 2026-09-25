@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cartilha - Vue.js</title>
+
+    <link rel="stylesheet" href="Css/Style.css">
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+    <header class="header">
+
+        <div class="logo">
+            <span>&lt;/&gt;</span>
+            <h2>Cartilha Vue.js</h2>
+        </div>
+
+        <nav>
+            <a href="Index.html">Início</a>
+            <a href="Cartilha.html" class="active">Cartilha</a>
+            <a href="Feedback.html">Feedback</a>
+        </nav>
+
+    </header>
+
+
+    <!-- ÁREA DA CARTILHA -->
+    <div class="documentation">
+
+        <!-- MENU LATERAL -->
+        <aside class="sidebar">
+
+            <h3>CONTEÚDO</h3>
+
+            <a href="#introducao">Introdução</a>
+
+            <a href="#script-setup">
+                &lt;script setup&gt;
+            </a>
+
+            <a href="#components">
+                Components
+            </a>
+
+            <a href="#composables">
+                Composables
+            </a>
+
+            <a href="#container">
+                Container / Presentational
+            </a>
+
+            <a href="#data-provider">
+                Data Provider
+            </a>
+
+            <a href="#dynamic">
+                Dynamic Components
+            </a>
+
+            <a href="#provide-inject">
+                Provide / Inject
+            </a>
+
+            <a href="#pinia">
+                State Management
+            </a>
+
+            <a href="#consideracoes">
+                Considerações Finais
+            </a>
+
+            <a href="#proximos">
+                Próximos Passos
+            </a>
+
+        </aside>
+
+
+        <!-- CONTEÚDO -->
+        <main class="content">
+
+
+            <!-- INTRODUÇÃO -->
+
+            <section id="introducao">
+
+                <span class="section-tag">
+                    GUIA DE ESTUDO
+                </span>
+
+                <h1>
+                    Cartilha de Padrões e
+                    Abordagens de Projeto no Vue.js
+                </h1>
+
+                <p class="intro">
+                    Esta cartilha foi elaborada como parte das atividades de extensão universitária e tem como objetivo apoiar estudantes e desenvolvedores iniciantes na compreensão dos principais padrões de projeto aplicados ao framework Vue.js. Espera-se que este material contribua para o aprendizado dos conceitos apresentados e sirva como fonte de consulta durante o desenvolvimento de aplicações. 
+                </p>
+
+                <div class="info-box">
+
+                    <strong>📚 Sobre esta cartilha</strong>
+
+                    <p>
+                        O material apresenta conceitos e exemplos que
+                        podem contribuir para o desenvolvimento de
+                        aplicações mais organizadas, reutilizáveis
+                        e fáceis de manter.
+                    </p>
+
+                </div>
+
+
+                <h2>Introdução</h2>
+
+                <p>
+                    Esta cartilha tem como objetivo apresentar alguns dos principais padrões de projeto utilizados no desenvolvimento de software, com foco em sua aplicação no framework Vue.js. Embora os exemplos sejam desenvolvidos utilizando essa tecnologia, os conceitos abordados podem ser aplicados em diferentes linguagens de programação e frameworks.
+
+                </p>
+
+                <p>
+                    Considerando a constante evolução da área de desenvolvimento de software, existem diversos padrões de projeto além dos apresentados neste material. Assim, esta cartilha não pretende esgotar o assunto, mas fornecer uma base para compreender como essas soluções podem contribuir para o desenvolvimento de aplicações mais organizadas, reutilizáveis e de fácil manutenção.
+
+                </p>
+
+
+                <h2>Mas afinal, o que são Padrões de Projeto?</h2>
+
+                <p>
+                    Padrões de projeto (Design Patterns) são soluções consolidadas para problemas recorrentes encontrados durante o desenvolvimento de software. Em vez de fornecerem um código pronto, eles descrevem formas eficientes de estruturar a aplicação, facilitando a reutilização de soluções, a manutenção do código e a comunicação entre desenvolvedores. Quando utilizados de maneira adequada, contribuem para a construção de sistemas mais flexíveis, organizados e escaláveis. 
+                </p>
+
+
+                <h2>Por que utilizar Padrões de Projeto?</h2>
+
+                <p>
+                    O desenvolvimento de software envolve desafios que costumam se repetir em diferentes projetos, como organizar o código, facilitar sua manutenção e permitir que novas funcionalidades sejam adicionadas sem comprometer o funcionamento da aplicação. Nesse contexto, os padrões de projeto oferecem soluções consolidadas para esses problemas, auxiliando os desenvolvedores na construção de sistemas mais consistentes e bem estruturados.
+
+                </p>
+
+                <p>
+                    A adoção desses padrões contribui para a criação de aplicações mais organizadas, reduzindo a duplicação de código e favorecendo a reutilização de componentes. Além disso, eles promovem uma melhor separação de responsabilidades entre as partes do sistema, tornando o código mais legível, flexível e simples de manter ao longo do tempo.
+                </p>
+
+                <p>
+                    Outro benefício importante é a padronização das soluções empregadas durante o desenvolvimento. Como muitos padrões de projeto são amplamente conhecidos pela comunidade de desenvolvedores, sua utilização facilita a comunicação entre os membros da equipe e torna mais simples a compreensão da arquitetura da aplicação por todos os envolvidos no projeto.
+                </p>
+
+                <p>
+                    Entretanto, é importante destacar que os padrões de projeto devem ser utilizados de maneira consciente. Sua utilização deve estar alinhada às necessidades do sistema, evitando o emprego desnecessário de soluções que possam aumentar a complexidade do código. Quando empregados de forma adequada, os padrões tornam o desenvolvimento mais eficiente e contribuem para a qualidade, a escalabilidade e a manutenção das aplicações.
+                </p>
+
+
+                <div class="summary-box">
+
+                    <h3>📌 Resumindo...</h3>
+
+                    <p>
+                        Ao utilizar padrões de projeto, o desenvolvedor
+                        consegue:
+                    </p>
+
+                    <ul>
+                        <li>Organizar melhor a estrutura da aplicação;</li>
+                        <li>Reutilizar soluções já consolidadas;</li>
+                        <li>Reduzir o acoplamento entre os componentes do sistema;</li>
+                        <li>Facilitar a manutenção e a evolução do código</li>
+                        <li>Melhorar a comunicação entre os membros da equipe;</li>
+                        <li>Desenvolver sistemas mais flexíveis, reutilizáveis e escaláveis.</li>
+                    </ul>
+
+                </div>
+
+            </section>
+
+
+            <!-- SCRIPT SETUP -->
+
+            <section id="script-setup">
+
+                <span class="section-number">
+                    01
+                </span>
+
+                <h2>Configuração do Script (&lt;script setup&gt;)</h2>
+
+                <p>
+                    No contexto do Vue.js, a forma de estruturar nosso código evoluiu muito com a chegada da Composition API. Para aplicarmos os padrões modernos que veremos a seguir, a base técnica fundamental é o uso do (&lt;script setup&gt;).
+
+                </p>
+
+                <h3>O que é?</h3>
+
+                <p>
+                    A Configuração do Script (&lt;script setup&gt;) é um recurso introduzido no Vue 3 que simplifica a escrita de componentes desenvolvidos utilizando a Composition API. Em vez de declarar manualmente a função setup(), esse recurso permite que todo o código seja escrito diretamente dentro da tag (&lt;script setup&gt;), tornando o componente mais limpo, objetivo e fácil de compreender.
+
+                </p>
+
+                <p>
+                    Além de reduzir a quantidade de código necessária para criar um componente, essa abordagem melhora a organização do projeto e facilita a manutenção da aplicação, principalmente em sistemas compostos por diversos componentes reutilizáveis.
+                </p>
+
+
+                <h3>Como funciona?</h3>
+
+                <p>
+                    Ao utilizar (&lt;script setup&gt;), todas as variáveis, funções e objetos declarados no script tornam-se automaticamente disponíveis para utilização no template do componente. Dessa forma, não é necessário retornar manualmente essas informações, como ocorre na utilização tradicional da função setup().
+
+                </p>
+                <p>
+                    Essa simplificação reduz a quantidade de código repetitivo e torna o desenvolvimento mais produtivo, permitindo que o desenvolvedor concentre seus esforços na implementação das funcionalidades da aplicação.
+
+                </p>
+
+
+                <h3>Quando utilizar?</h3>
+
+                <p>
+                   A utilização de (&lt;script setup&gt;) é recomendada para novos projetos desenvolvidos com Vue 3 ou durante a modernização de aplicações existentes que utilizam a Composition API. Essa abordagem é especialmente útil quando se deseja escrever componentes menores, mais organizados e de fácil manutenção.
+
+                </p>
+
+                <p>
+                    Embora seja possível utilizar a sintaxe tradicional baseada na função setup(), a configuração por meio de (&lt;script setup&gt;) é atualmente a abordagem recomendada pela equipe responsável pelo Vue.js devido à sua simplicidade e melhor desempenho durante a compilação.
+
+                </p>
+
+
+                <h3>Exemplo prático</h3>
+                <p>
+                    Imagine um componente responsável por exibir uma saudação ao usuário.
+                </p>
+
+                <div class="code-block">
+
+<pre><code>&lt;script setup&gt;
+import { ref } from 'vue'
+
+const nome = ref('Maria')
+
+function alterarNome() {
+    nome.value = 'Visitante'
+}
+&lt;/script&gt;
+
+&lt;template&gt;
+    &lt;div&gt;
+        &lt;h2&gt;Olá, {{ nome }}!&lt;/h2&gt;
+
+        &lt;button @click="alterarNome"&gt;
+            Alterar nome
+        &lt;/button&gt;
+    &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+            
+
+                </div>
+                <p>
+                Nesse exemplo, a variável nome e a função alterarNome() podem ser utilizadas diretamente no template, sem que seja necessário retorná-las explicitamente.
+                </p>
+
+                <h3> Vantagens </h3>
+
+                    <ul>
+                        <li>Reduz a quantidade de código necessária para criar componentes;</li>
+                        <li>Elimina a necessidade de declarar a função setup();</li>
+                        <li>Facilita a leitura e a organização do código;</li>
+                        <li>Possui melhor integração com a Composition API;</li>
+                        <li>Favorece a reutilização de lógica por meio de composables;</li>
+                        <li>Oferece melhor otimização durante a compilação do projeto.</li>
+                    </ul>
+
+
+                <div class="warning-box">
+
+                    <strong>🚨⚠️ Atenção</strong>
+
+                    <p>
+                       Embora &lt;script setup&gt; simplifique o desenvolvimento, é importante manter uma boa organização do código. Componentes com muitas responsabilidades podem se tornar difíceis de compreender, mesmo utilizando essa abordagem. Sempre que possível, recomenda-se dividir funcionalidades complexas em componentes menores ou em composables.
+
+                    </p>
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <h3>📌 Resumindo...</h3>
+                    <p>O &lt;script setup&gt; permite:</p>
+
+                    <ul>
+                        <li>Escrever componentes com menos código;</li>
+                        <li>Utilizar variáveis e funções diretamente no template;</li>
+                        <li>Simplificar a Composition API;</li>
+                        <li>Melhorar a organização dos componentes;</li>
+                        <li>Facilitar a manutenção do projeto.</li>
+                    </ul>
+
+                </div>
+
+            </section>
+
+
+            <!-- COMPONENTES -->
+
+            <section id="components">
+
+                <span class="section-number">
+                    02
+                </span>
+
+                <h2>Componentes</h2>
+
+                <p>
+                    No Vue.js, a interface do usuário é construída através de <strong>Componentes</strong>. Em vez de criarmos páginas inteiras em um único arquivo gigante, dividimos a interface em blocos menores, independentes e reutilizáveis (como um cabeçalho, um botão ou uma lista de itens).
+
+                </p>
+
+
+                <h3>O que é?</h3>
+
+                <p>
+                    Componentes são os blocos de construção fundamentais das aplicações Vue.js. Eles permitem acoplar marcação (HTML), lógica (JavaScript) e estilos (CSS) em uma única estrutura coesa. Em uma aplicação típica, quase todos os elementos visuais da interface fazem parte de um componente. Na prática, a aplicação é formada por uma árvore de componentes aninhados em uma hierarquia, variando desde objetos JavaScript simples até Single-File Components (SFCs), os tradicionais arquivos .vue
+
+                </p>
+
+                <h3>Como funciona?</h3>
+
+                <p>
+                    Os componentes encapsulam partes da interface que possuem sua própria estrutura e comportamento, permitindo que sejam desenvolvidos e mantidos de forma independente. Por meio de Props (propriedades), componentes pais podem enviar dados para componentes filhos, possibilitando a reutilização de uma mesma estrutura com diferentes informações.
+
+                </p>
+
+                <p>
+                    Além disso, recursos como ref() e reactive() permitem gerenciar dados reativos, fazendo com que a interface seja atualizada automaticamente quando esses valores são alterados.
+                </p>
+
+                <h3>Quando utilizar? </h3>
+                <p>
+                    A criação e a extração de componentes devem ser utilizadas para promover a reutilização e facilitar a manutenção em aplicações de médio a grande porte. Uma boa regra prática é separar um trecho da interface em um novo componente sempre que ele for utilizado diversas vezes (como botões, painéis ou avatares) ou quando for complexo o suficiente por si só (como um formulário de comentários ou uma seção inteira de um aplicativo).
+
+                </p>
+
+                <h3>Exemplo prático</h3>
+
+                <p>
+                    Considere uma aplicação desenvolvida para o gerenciamento de projetos de uma feira científica. Nesse contexto, pode ser necessário apresentar diversas informações de projetos em diferentes partes da aplicação. Para evitar a repetição da mesma estrutura de código, podemos criar um componente responsável por exibir os dados de cada projeto.
+
+                </p>
+                <p> O componente ProjetoCard.vue pode ser definido da seguinte maneira:</p>
+
+
+                <div class="code-block">
+
+<pre><code>&lt;script setup&gt;
+
+defineProps({
+    titulo: String,
+    autor: String,
+    categoria: String
+})
+
+&lt;/script&gt;
+
+&lt;template&gt;
+
+    &lt;div class="projeto-card"&gt;
+
+        &lt;h2&gt;{{ titulo }}&lt;/h2&gt;
+
+        &lt;p&gt;
+            &lt;strong&gt;Autor:&lt;/strong&gt;
+            {{ autor }}
+        &lt;/p&gt;
+
+        &lt;p&gt;
+            &lt;strong&gt;Categoria:&lt;/strong&gt;
+            {{ categoria }}
+        &lt;/p&gt;
+
+    &lt;/div&gt;
+
+&lt;/template&gt;</code></pre>
+
+                </div>
+
+                <div>
+                    <p>Depois de criado, esse componente pode ser utilizado por um componente pai, como App.vue, passando diferentes informações por meio das propriedades:</p>
+                </div>
+
+                <div class="code-block">
+
+<pre><code>&lt;script setup&gt;
+import ProjetoCard from './components/ProjetoCard.vue'
+&lt;/script&gt;
+
+&lt;template&gt;
+
+    &lt;div class="projeto-card"&gt;
+        &lt;h1&gt;Projetos da Feira Científica&lt;/h1&gt;
+        &lt;ProjetoCard
+        titulo="Sistema de Irrigação Inteligente"
+        autor="Ana Souza"
+        categoria="Tecnologia"
+        /&gt;
+
+        &lt;ProjetoCard
+        titulo="Análise da Qualidade da Água"
+        autor="Carlos Oliveira"
+        categoria="Meio Ambiente"
+        /&gt;
+        
+        &lt;ProjetoCard
+         titulo="Aplicação de Energia Solar"
+         autor="Mariana Santos"
+         categoria="Sustentabilidade"
+        /&gt;
+     &lt;/div&gt;
+
+&lt;/template&gt;</code></pre>
+
+                </div>
+
+                <p>Nesse exemplo, o componente ProjetoCard possui uma estrutura única, mas pode ser reutilizado diversas vezes com informações diferentes. Os dados são enviados pelo componente pai por meio das props titulo, autor e categoria.
+                </p>
+                <p>Dessa forma, caso seja necessário modificar a maneira como os projetos são apresentados, basta realizar a alteração no componente ProjetoCard.vue, fazendo com que a mudança seja refletida em todos os locais em que o componente é utilizado. Esse comportamento demonstra como a utilização de componentes contribui para a reutilização de código, a organização da interface e a facilidade de manutenção da aplicação.
+                </p>
+
+
+                <h3>Vantagens</h3>
+
+                <ul>
+                    <li><strong>Reutilização:</strong> Permite utilizar a mesma estrutura visual e lógica em diferentes partes do sistema, podendo receber dados distintos por meio de Props </li>
+
+                    <li><strong>Manutenibilidade:</strong> O isolamento de código facilita a identificação e correção de erros sem impactar o resto da aplicação.
+</li>
+
+                    <li><strong>Composição:</strong> Interfaces complexas podem ser divididas e construídas através da união de peças menores (por exemplo, um componente pai gerindo vários filhos).</li>
+
+                    <li><strong>Reatividade simplificada:</strong> A gestão do estado da aplicação acompanha perfeitamente a renderização na tela.
+</li>
+                </ul>
+
+
+                <div class="warning-box">
+
+                    <strong>🚨⚠️ Atenção</strong>
+
+                    <p>
+                        Embora a extração para microcomponentes ajude na organização, isso pode se tornar um trabalho exaustivo caso seja mal planejado. Evite fragmentar partes da interface que não possuem complexidade substancial ou que jamais serão reutilizadas. Ter uma quantidade excessiva de componentes muito pequenos pode, paradoxalmente, dificultar a leitura geral do fluxo do seu código.
+
+                    </p>
+
+                </div>
+                
+                <div class="summary-box">
+                      <h3>📌 Resumindo...</h3>
+
+                    <p>
+                        A utilização de componentes no Vue.js permite:
+                    </p>
+                     <ul>
+                        <li>construir interfaces dinâmicas por meio de blocos independentes;</li>
+                        <li>centralizar HTML, CSS e JS em Single-File Components;</li>
+                        <li>compartilhar dados eficientemente entre elementos via Props; </li>
+                        <li>gerenciar o estado reativo sem intervenção manual no DOM;</li>
+                        <li>garantir a escalabilidade de projetos extensos.</li>
+                    </ul>
+                </div>
+                  
+            </section>
+
+
+            <!-- COMPOSABLES -->
+
+            <section id="composables">
+
+                <span class="section-number">
+                    03
+                </span>
+
+                <h2>Composables (Funções de Composição) no Vue.js</h2>
+
+                <p>À medida que as aplicações Vue.js crescem, a lógica responsável pelo funcionamento dos componentes pode se tornar cada vez mais complexa. Para evitar a repetição de código e facilitar a organização dessas funcionalidades, o Vue.js oferece os Composables, que permitem separar e reutilizar lógicas entre diferentes partes da aplicação. 
+</p>
+
+                <h3>O que é?</h3>
+
+                <p>
+                    No contexto das aplicações Vue.js, um<strong> Composable (Função de Composição)</strong> é uma função que utiliza a Composition API para encapsular e reutilizar uma determinada lógica baseada em estado. Ele permite separar comportamentos que poderiam ficar concentrados dentro dos componentes, tornando o código mais organizado e facilitando sua reutilização em diferentes partes da aplicação.
+
+                <p>
+                   Os Composables são uma abordagem utilizada no Vue 3 para compartilhar lógica entre componentes, oferecendo uma alternativa aos Mixins utilizados em versões anteriores do Vue. Em termos práticos, um Composable permite separar a lógica de uma funcionalidade da camada de apresentação visual, evitando que o componente fique responsável por concentrar todas as regras e comportamentos da aplicação.
+
+                </p>
+
+
+                <h3>Como funciona?</h3>
+
+                <p>
+                    Diferentemente de um componente, que pode reunir estrutura, lógica e estilos, um Composable é normalmente implementado como uma função em JavaScript ou TypeScript, geralmente em arquivos .js ou .ts separados. Dentro dessas funções, podem ser utilizados recursos da Composition API, como ref(), reactive() e hooks do ciclo de vida, para criar e gerenciar dados e comportamentos reativos.
+
+                </p>
+
+                <p>
+                   Por convenção, os nomes dos Composables geralmente começam com o prefixo use, como useProjetos(), useUsuario() ou useFetch(). Quando um componente utiliza um Composable, a função pode retornar dados reativos e métodos que serão utilizados pelo componente, permitindo separar a lógica da estrutura visual.
+
+                </p>
+                <h3>Quando utilizar? </h3>
+
+                <p>A criação de um Composable é indicada quando uma determinada lógica precisa ser reutilizada em diferentes componentes ou quando uma funcionalidade possui comportamentos que podem ser separados da interface. Por exemplo, operações relacionadas ao cadastro de projetos, controle de formulários ou comunicação com uma API podem ser organizadas em Composables.</p>
+                <p>De forma resumida, Composables são utilizados principalmente para compartilhar lógica e comportamento entre diferentes partes da aplicação. Quando a necessidade está relacionada ao compartilhamento da estrutura visual, como HTML e estilos, a criação de componentes reutilizáveis costuma ser uma abordagem mais adequada.</p>
+
+
+                <h3>Exemplo prático</h3>
+
+                <p>Considere uma aplicação destinada ao gerenciamento de projetos de uma feira científica. Nesse contexto, diferentes partes do sistema podem precisar realizar operações relacionadas aos projetos cadastrados. Para evitar que essa lógica seja repetida em vários componentes, podemos criar um Composable responsável por centralizar essas operações. </p>
+
+                <p>O arquivo useProjetos.js pode ser definido da seguinte maneira:</p>
+
+                <div class="code-block">
+
+<pre><code>import { ref } from 'vue'
+
+export function useProjetos() {
+
+    const projetos = ref([])
+    const carregando = ref(false)
+
+    function adicionarProjeto(projeto) {
+        projetos.value.push(projeto)
+    }
+    function removerProjeto(id) {
+        projetos.value =
+            projetos.value.filter(
+                projeto => projeto.id !== id
+            )
+    }
+    return {
+        projetos,
+        carregando,
+        adicionarProjeto,
+        removerProjeto
+    }
+}</code></pre>
+
+
+
+                </div>
+                <p>Esse Composable pode ser utilizado por um componente responsável pela apresentação dos projetos:</p>
+                <div class="code-block">
+
+<div class="code-block">
+
+<pre><code>&lt;script setup&gt;
+import { useProjetos } from './composables/useProjetos.js'
+
+const {
+    projetos,
+    adicionarProjeto,
+    removerProjeto
+} = useProjetos()
+
+function cadastrarProjeto() {
+    adicionarProjeto({
+        id: 1,
+        titulo: 'Sistema de Irrigação Inteligente',
+        categoria: 'Tecnologia'
+    })
+}
+
+&lt;/script&gt;
+
+&lt;template&gt;
+
+    &lt;div&gt;
+
+        &lt;h2&gt;Projetos cadastrados&lt;/h2&gt;
+
+        &lt;button @click="cadastrarProjeto"&gt;
+            Cadastrar projeto
+        &lt;/button&gt;
+
+        &lt;ul&gt;
+            &lt;li v-for="projeto in projetos" :key="projeto.id"&gt;
+
+                {{ projeto.titulo }} -
+                {{ projeto.categoria }}
+
+                &lt;button @click="removerProjeto(projeto.id)"&gt;
+                        Remover
+                &lt;/button&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+</div>
+            </section>
+            <p>Nesse exemplo, a lógica responsável por armazenar, adicionar e remover projetos está concentrada no Composable useProjetos. O componente utiliza essa lógica sem precisar implementar diretamente todas essas operações, ficando responsável principalmente pela apresentação das informações e pela interação com o usuário.</p>
+            <p>Caso outro componente também precise realizar as mesmas operações, ele poderá utilizar o useProjetos(), evitando a duplicação da lógica.</p>
+             
+                    <h3>Vantagens</h3>
+
+                    <ul>
+                        <li>Reaproveitamento de lógica:permite utilizar a mesma lógica em diferentes componentes sem a necessidade de duplicar código.
+</li>
+                        <li>Organização:possibilita separar comportamentos específicos da estrutura visual dos componentes.
+</li>
+                        <li>Facilidade de manutenção:alterações na lógica podem ser realizadas diretamente no Composable, reduzindo a necessidade de modificar vários componentes.
+</li>
+                        <li>Testabilidade:por serem funções independentes, os Composables podem facilitar a realização de testes sobre a lógica que implementam.</li>
+                        <li>Composição de funcionalidades:um Composable pode utilizar outros Composables, permitindo organizar funcionalidades maiores em partes menores e reutilizáveis.</li>
+                        <li>Integração com TypeScript:quando utilizados com TypeScript, os Composables podem se beneficiar da tipagem estática e da inferência de tipos.</li>
+                    </ul>
+
+            <div class="warning-box">
+
+                        <strong>🚨⚠️ Atenção</strong>
+
+                        <p>
+                            Embora os Composables sejam úteis para compartilhar lógica, eles não devem ser utilizados para qualquer situação. Criar Composables para funcionalidades muito simples ou que nunca serão reutilizadas pode aumentar desnecessariamente a complexidade do projeto.
+
+                        </p>
+                        <p>Também é importante ter atenção ao gerenciamento do ciclo de vida. Quando um Composable registra eventos, temporizadores ou outros recursos persistentes, é necessário realizar a limpeza adequada quando o componente deixar de ser utilizado. Recursos como onUnmounted() podem ser utilizados para remover listeners e interromper operações que não sejam mais necessárias.</p>
+                        <p>Além disso, quando um Composable utiliza recursos relacionados ao ciclo de vida do componente, ele deve ser chamado durante a execução síncrona do setup() ou do &lt;script setup&gt;, permitindo que esses recursos sejam associados corretamente ao componente.</p>
+
+                    </div>
+                    <div class="summary-box">
+                      <h3>📌 Resumindo...</h3>
+
+                    <p>
+                        O uso de Composables no Vue.js permite:
+
+                    </p>
+                     <ul>
+                        <li>extrair lógicas e comportamentos dos componentes;</li>
+                        <li>reutilizar funcionalidades em diferentes partes da aplicação;</li>
+                        <li>reduzir a duplicação de código; </li>
+                        <li>facilitar a manutenção e os testes;</li>
+                        <li>organizar funcionalidades complexas em partes menores;</li>
+                        <li>combinar diferentes Composables para construir funcionalidades mais completas. </li>
+                    </ul>
+                </div>
+
+
+            <!-- CONTAINER -->
+
+            <section id="container">
+
+                <span class="section-number">
+                    04
+                </span>
+
+                <h2>Padrão Container / Presentational no Vue.js</h2>
+
+                <p>Conforme uma aplicação cresce, seus componentes podem acumular diferentes responsabilidades, como buscar dados, controlar estados e apresentar informações na tela. Para lidar com essa situação, o padrão Container/Presentational propõe uma separação entre a lógica responsável pelo funcionamento da aplicação e a estrutura responsável pela apresentação da interface. </p>
+
+                <h3>O que é?</h3>
+
+                <p>
+                   O padrão <strong>Container/Presentational</strong> é uma abordagem que busca separar a lógica responsável pelo funcionamento da aplicação da parte responsável pela apresentação visual. No Vue.js, essa separação pode ser realizada dividindo os componentes de acordo com suas responsabilidades: os <strong>Containers</strong> ficam responsáveis por dados, estado e comportamentos, enquanto os componentes <strong>Presentational</strong> concentram a construção da interface.
+                </p>
+                <p>Essa organização aplica o princípio de <strong>Separação de Responsabilidades (Separation of Concerns)</strong>, tornando cada componente mais específico em sua função e facilitando a manutenção e a reutilização do código.</p>
+
+                 <h3>Como funciona?</h3>
+                 <p>O padrão divide a interface em dois tipos principais de componentes: </p>
+
+                <div class="comparison">
+
+                    <div>
+                        <h3>Componentes Container: </h3>
+
+                        <p>
+                            são responsáveis por lidar com dados, estados e comportamentos da aplicação. Podem realizar requisições a APIs, utilizar fontes de dados e definir o que será apresentado. Depois de obter os dados, eles os encaminham para os componentes Presentational por meio de Props e podem receber ações por meio de eventos.
+
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3>Componentes Presentational:</h3>
+
+                        <p>
+                            são responsáveis principalmente pela apresentação das informações recebidas. Eles utilizam Props para receber dados e podem emitir eventos quando o usuário realiza alguma ação, deixando para o componente Container a responsabilidade de decidir como essa ação será tratada.
+                        </p>
+                    </div>
+
+                </div>
+                <p>Dessa forma, o Container concentra a lógica da aplicação, enquanto o Presentational se concentra na construção da interface.</p>
+
+
+                <h3>Quando utilizar?</h3>
+
+                <p>
+                   Esse padrão pode ser utilizado quando um componente começa a reunir muitas responsabilidades, misturando a obtenção e manipulação de dados com uma estrutura visual extensa. A separação também pode ser útil quando uma mesma interface precisa ser reutilizada com diferentes fontes de dados ou comportamentos.
+
+                </p>
+                <p>Entretanto, não é necessário aplicar essa divisão em todos os componentes. Em aplicações menores ou em funcionalidades simples, separar cada parte em um Container e um Presentational pode aumentar a quantidade de arquivos e a complexidade do projeto.</p>
+
+
+                <h3>Exemplo prático</h3>
+
+                <p>Considere uma aplicação destinada ao gerenciamento de projetos de uma feira científica. Nesse sistema, podemos separar a responsabilidade de obter e controlar os projetos da responsabilidade de apresentá-los na tela. </p>
+
+                <p>1. Componente Presentational (ProjetoList.vue)</p>
+
+                <p>Esse componente recebe os projetos por meio de Props e fica responsável por apresentar as informações ao usuário:</p>
+
+<div class="code-block">
+
+<pre><code>&lt;script setup&gt;
+
+defineProps({
+    projetos: {
+        type: Array,
+        required: true
+    }
+})
+
+const emit = defineEmits(['selecionar'])
+&lt;/script&gt;
+
+&lt;template&gt;
+    &lt;ul&gt;
+        &lt;li
+            v-for="projeto in projetos"
+            :key="projeto.id"
+        &gt;
+            &lt;strong&gt;{{ projeto.titulo }}&lt;/strong&gt;
+            &lt;span&gt; - {{ projeto.categoria }}&lt;/span&gt;
+
+            &lt;button @click="emit('selecionar', projeto.id)"&gt;
+                Selecionar
+            &lt;/button&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/template&gt;</code></pre>
+
+</div>
+
+<p>O componente não precisa saber de onde os projetos vieram nem o que deverá acontecer depois que um projeto for selecionado. Sua responsabilidade é apresentar os dados recebidos e comunicar a interação realizada pelo usuário.
+</p>
+
+                <p>2. Componente Container (ProjetoListContainer.vue)</p>
+
+                <p>O Container fica responsável por obter os dados e definir o comportamento da aplicação:</p>
+                <div class="code-block">
+
+<pre><code>&lt;script setup&gt;
+
+import { ref, onMounted } from 'vue'
+import ProjetoList from './ProjetoList.vue'
+
+const projetos = ref([])
+
+onMounted(() =&gt; {
+    projetos.value = [
+        {
+            id: 1,
+            titulo: 'Sistema de Irrigação Inteligente',
+            categoria: 'Tecnologia'
+        },
+        {
+            id: 2,
+            titulo: 'Análise da Qualidade da Água',
+            categoria: 'Meio Ambiente'
+        }
+    ]
+})
+
+function selecionarProjeto(id) {
+    console.log('Projeto selecionado:', id)
+}
+&lt;/script&gt;
+
+&lt;template&gt;
+    &lt;ProjetoList
+        :projetos="projetos"
+        @selecionar="selecionarProjeto"
+    /&gt;
+&lt;/template&gt;</code></pre>
+</div>
+
+                    <p>Nesse exemplo, o ProjetoListContainer controla os dados e o comportamento relacionado aos projetos, enquanto o ProjetoList concentra apenas a apresentação dessas informações.</p>
+
+                    <p>A comunicação entre os componentes ocorre por meio de Props, utilizadas para enviar os projetos ao componente filho, e de eventos, utilizados para informar ao Container que o usuário selecionou determinado projeto.</p>
+
+                <h3> Vantagens </h3>
+
+                    <ul>
+                        <li>Separação de responsabilidades: permite separar a lógica da aplicação da estrutura visual dos componentes.</li>
+                        <li>Reutilização: componentes Presentational podem ser utilizados em diferentes contextos, recebendo dados distintos por meio de Props.</li>
+                        <li>Organização: facilita a compreensão do código ao definir responsabilidades específicas para cada componente.</li>
+                        <li>Manutenção: alterações na apresentação podem ser realizadas sem modificar diretamente a lógica responsável pelos dados.</li>
+                        <li>Testabilidade: componentes que se concentram apenas na apresentação podem ser testados de forma mais isolada.</li>
+                    </ul>
+                     <div class="warning-box">
+
+                        <strong>🚨⚠️ Atenção</strong>
+
+                        <p>
+                           O padrão Container/Presentational não precisa ser aplicado de maneira rígida em todas as situações. Com a utilização da Composition API e dos Composables no Vue 3, muitas aplicações conseguem separar a lógica da interface sem a necessidade de criar um componente Container específico.
+
+                        </p>
+                        <p>Em determinadas situações, um Composable pode concentrar a lógica de uma funcionalidade e ser utilizado diretamente pelo componente que apresenta os dados. Essa abordagem pode reduzir a quantidade de componentes necessários e evitar uma estrutura excessivamente complexa.</p>
+
+                        <p>Por isso, a escolha entre utilizar Containers, Composables ou uma combinação das duas abordagens deve considerar a complexidade e as necessidades da aplicação.</p>
+
+                    </div>
+                    <div class="summary-box">
+                      <h3>📌 Resumindo...</h3>
+
+                    <p>
+                        O padrão Container/Presentational permite:
+
+                    </p>
+                     <ul>
+                        <li>separar a lógica da aplicação da apresentação visual;</li>
+                        <li>criar componentes focados na exibição das informações;</li>
+                        <li>centralizar o gerenciamento de dados e comportamentos nos Containers; </li>
+                        <li>facilitar a reutilização e manutenção dos componentes;</li>
+                        <li>organizar melhor aplicações com interfaces mais complexas;</li>
+                        <li>combinar diferentes abordagens, como Containers e Composables, de acordo com a necessidade do projeto. </li>
+                    </ul>
+                </div>
+
+            </section>
+
+
+            <!-- DATA PROVIDER -->
+
+            <section id="data-provider">
+
+                <span class="section-number">
+                    05
+                </span>
+
+                <h2>Padrão Provedor de Dados (Data Provider) no Vue.js</h2>
+
+                <P>Conforme as aplicações Vue.js se tornam mais complexas, pode surgir a necessidade de compartilhar a mesma lógica de obtenção e gerenciamento de dados entre diferentes interfaces. Nesse contexto, o padrão<strong> Data Provider</strong> permite separar o fornecimento das informações da forma como elas serão apresentadas ao usuário.</P>
+
+                <h3>O que é?</h3>
+
+                <p>
+                   O padrão Provedor de Dados (Data Provider) é uma abordagem que busca separar a lógica responsável pela obtenção e gerenciamento de dados da estrutura responsável por apresentá-los na interface. Dessa forma, um componente pode ficar responsável por fornecer as informações, enquanto outros componentes definem como esses dados serão exibidos.
+                </p>
+
+                <p>
+                    No Vue.js, essa abordagem pode ser implementada por meio de componentes sem renderização (renderless components) e Slots, permitindo que o componente consumidor tenha maior controle sobre a estrutura visual enquanto recebe os dados disponibilizados pelo provedor.
+
+                </p>
+
+
+                <h3>Como funciona?</h3>
+
+                <p>
+                    O componente Data Provider concentra a lógica relacionada aos dados, como chamadas a APIs, controle de carregamento e gerenciamento do estado. Essas informações são disponibilizadas aos componentes consumidores por meio de um <slot>.
+
+                </p>
+
+                <p>
+                   Através da diretiva v-slot, o componente consumidor pode acessar os dados fornecidos e decidir como apresentá-los. Dessa forma, uma mesma lógica de obtenção de informações pode ser utilizada em diferentes interfaces, sem que seja necessário duplicar o código responsável por buscar e controlar esses dados.
+
+                </p>
+
+                <p>Os Slots do Vue permitem que um componente receba conteúdo definido pelo componente pai. Quando utilizados como slots com escopo, também podem receber dados disponibilizados pelo componente que os contém, permitindo a comunicação entre o provedor e a interface que irá consumir essas informações.</p>
+
+                <h3>Quando utilizar?</h3>
+
+                <p>O Data Provider pode ser utilizado quando uma determinada lógica de obtenção e gerenciamento de dados precisa ser compartilhada entre diferentes interfaces. Ele é especialmente útil quando os mesmos dados precisam ser apresentados de maneiras diferentes, dependendo do contexto da aplicação.</p>
+
+                <p>Por exemplo, uma aplicação pode obter uma lista de projetos científicos uma única vez e disponibilizar essas informações para diferentes componentes, que poderão apresentá-las como uma lista, tabela ou conjunto de cartões.</p>
+
+                <p>Entretanto, esse padrão não precisa ser utilizado em todas as situações. Quando o objetivo principal é apenas reutilizar uma determinada lógica entre componentes, um Composable pode oferecer uma solução mais simples e direta.</p>
+            
+                <h3>Exemplo prático</h3>
+
+                <p>Considere uma aplicação para gerenciamento de projetos de uma feira científica. Nesse sistema, diferentes partes da aplicação podem precisar acessar a lista de projetos cadastrados. Para evitar que cada componente implemente sua própria lógica de obtenção desses dados, podemos criar um componente responsável por fornecê-los.</p>
+
+                <h4>1. Componente Provedor (ProjetoDataProvider.vue)</h4>
+
+                <p>O Data Provider será responsável por armazenar os projetos e controlar o estado de carregamento. Os dados serão disponibilizados para o componente consumidor por meio do <slot>:</p>
+
+<div class="code-block">
+
+<pre><code>&lt;script setup&gt;
+import { ref, onMounted } from 'vue'
+
+const projetos = ref([])
+const loading = ref(true)
+
+onMounted(() =&gt; {
+    projetos.value = [
+        {
+            id: 1,
+            titulo: 'Sistema de Irrigação Inteligente',
+            categoria: 'Tecnologia'
+        },
+        {
+            id: 2,
+            titulo: 'Análise da Qualidade da Água',
+            categoria: 'Meio Ambiente'
+        }
+    ]
+    loading.value = false
+})
+
+&lt;/script&gt;
+
+&lt;template&gt;
+    &lt;slot
+        :projetos="projetos"
+        :loading="loading"
+    /&gt;
+&lt;/template&gt;</code></pre>
+
+                </div>
+                <p>Nesse componente, os dados são mantidos de forma reativa por meio de ref(). O <slot> disponibiliza projetos e loading para o componente que utilizar o Data Provider.</p>
+
+                <h4>2. Componente Consumidor (ProjetoLista.vue)</h4>
+                <P>O componente consumidor utiliza v-slot para acessar os dados fornecidos e define como eles serão apresentados:</P>
+                <div class="code-block">
+
+<pre><code>&lt;script setup&gt;
+import ProjetoDataProvider from './ProjetoDataProvider.vue'
+&lt;/script&gt;
+
+&lt;template&gt;
+    &lt;ProjetoDataProvider v-slot="{ projetos, loading }"&gt;
+
+        &lt;p v-if="loading"&gt;
+            Carregando projetos...
+        &lt;/p&gt;
+
+        &lt;ul v-else&gt;
+            &lt;li
+                v-for="projeto in projetos"
+                :key="projeto.id"
+            &gt;
+
+                &lt;strong&gt;{{ projeto.titulo }}&lt;/strong&gt;
+                &lt;span&gt; - {{ projeto.categoria }}&lt;/span&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+
+    &lt;/ProjetoDataProvider&gt;
+&lt;/template&gt;</code></pre>
+
+</div>
+
+                <p>Nesse exemplo, o ProjetoDataProvider é responsável por fornecer os dados, enquanto o componente consumidor decide como essas informações serão apresentadas. Isso permite que outros componentes utilizem o mesmo provedor e apresentem os projetos de maneiras diferentes, sem precisar repetir a lógica responsável pela obtenção dos dados.</p>
+
+                <h3> Vantagens </h3>
+
+                    <ul>
+                        <li>Separação de responsabilidades: separa a lógica de obtenção e gerenciamento dos dados da apresentação da interface.</li>
+                        <li>Reutilização: permite utilizar uma mesma lógica de fornecimento de dados em diferentes componentes.</li>
+                        <li>Flexibilidade visual: diferentes componentes podem apresentar os mesmos dados utilizando estruturas visuais distintas.</li>
+                        <li>Organização: evita concentrar a obtenção dos dados e a construção da interface em um único componente.</li>
+                        <li>Redução da duplicação: evita que diferentes componentes precisem implementar novamente a mesma lógica de obtenção e gerenciamento das informações.</li>
+                    </ul>
+                     <div class="warning-box">
+
+                        <strong>🚨⚠️ Atenção</strong>
+
+                        <p>O Data Provider não precisa ser utilizado em todas as situações. Com a utilização da Composition API e dos Composables no Vue 3, muitas funcionalidades podem ter sua lógica reutilizada sem a necessidade de criar um componente específico para fornecer os dados.
+                        </p>
+
+                        <p>Por isso, antes de utilizar esse padrão, é importante avaliar a complexidade da aplicação e a forma como a lógica será reutilizada. Em situações mais simples, um Composable pode oferecer uma solução mais direta. Quando a necessidade envolve fornecer dados para diferentes estruturas de interface por meio de Slots, o Data Provider pode ser uma alternativa adequada.</p>
+
+                        <p>Também é importante considerar que o Data Provider utiliza um componente para encapsular a lógica, enquanto um Composable permite reutilizar essa lógica diretamente dentro dos componentes. O Patterns.dev destaca justamente os Composables como uma alternativa para diversos casos em que o Data Provider poderia ser utilizado.</p>
+
+                    </div>
+
+
+                <div class="summary-box">
+
+                    <h3>📌 Resumindo...</h3>
+                    <p>O padrão Data Provider permite:</p>
+
+                    <ul>
+                        <li>separar a obtenção e o gerenciamento dos dados da apresentação da interface;</li>
+                        <li>disponibilizar informações para componentes consumidores por meio de Slots;</li>
+                        <li>reutilizar uma mesma lógica de fornecimento de dados em diferentes interfaces;</li>
+                        <li>reduzir a duplicação de código;</li>
+                        <li>permitir que os mesmos dados sejam apresentados de diferentes maneiras;</li>
+                        <li>organizar melhor a comunicação entre a lógica de dados e a camada visual.</li>
+                    </ul>
+                </div>
+
+            </section>
+
+
+            <!-- DYNAMIC COMPONENTS -->
+
+            <section id="dynamic">
+
+                <span class="section-number">
+                    06
+                </span>
+
+                <h2>Padrão Componentes Dinâmicos (Dynamic Components) no Vue.js</h2>
+                <P>À medida que uma aplicação cresce, pode surgir a necessidade de apresentar diferentes conteúdos em uma mesma região da interface, dependendo da interação realizada pelo usuário. Em situações como abas, etapas de formulários e diferentes modos de visualização, seria possível utilizar várias estruturas condicionais para controlar o que será exibido. Entretanto, o Vue.js oferece os Componentes Dinâmicos como uma alternativa mais organizada para realizar essa troca de componentes de forma reativa.</P>
+
+                <h3>O que é?</h3>
+
+                <p>
+                    O padrão Componentes Dinâmicos (Dynamic Components) é um recurso do Vue.js que permite alternar dinamicamente entre diferentes componentes dentro de uma mesma região da interface. Dessa forma, em vez de definir antecipadamente qual componente será exibido, a aplicação pode determinar qual deles deve ser renderizado de acordo com o estado atual.
+                </p>
+
+                <p>
+                    Esse recurso é especialmente útil em interfaces nas quais diferentes componentes precisam ocupar o mesmo espaço, como sistemas de abas, etapas de formulários, painéis de informações ou diferentes formas de visualizar um determinado conteúdo.
+                </p>
+
+                <P>No Vue.js, essa funcionalidade é realizada principalmente por meio do elemento especial <component> e da propriedade :is, que permite definir qual componente deverá ser apresentado naquele momento.</P>
+
+
+                <h3>Como funciona?</h3>
+
+                <p> O Vue disponibiliza a tag <component>, que pode utilizar a propriedade :is para determinar qual componente será renderizado. O valor utilizado nessa propriedade pode representar o nome de um componente registrado ou o próprio objeto do componente importado.</p>
+
+                <P>Quando o valor utilizado em :is é alterado, o Vue atualiza a interface para apresentar o novo componente no mesmo local. Dessa forma, diferentes componentes podem ocupar uma mesma região da tela sem que seja necessário criar uma estrutura extensa de v-if e v-else-if.</P>
+
+                <P>Para controlar qual componente será exibido, normalmente utilizamos uma variável reativa. Por exemplo, uma aplicação pode possuir uma variável chamada abaAtual, responsável por armazenar a identificação da aba selecionada. A partir dessa informação, o <component> determina qual componente deverá ser apresentado.</P>
+
+                <h3> Quando utilizar?</h3>
+            <P>Os Componentes Dinâmicos podem ser utilizados quando diferentes componentes precisam ser exibidos de forma alternativa em uma mesma região da interface. Alguns cenários comuns são:</P>
+
+            <ul> 
+                <li>Sistemas de Abas (Tabs): permitem alternar entre diferentes conteúdos de uma página, como informações, avaliações e cronogramas.</li>
+                <li>Assistentes de etapas (Wizards/Steppers): permitem dividir formulários ou processos maiores em diferentes etapas. </li>
+                <li>Diferentes modos de visualização: possibilitam alternar entre componentes que apresentam os mesmos dados de maneiras diferentes</li>
+                <li>Painéis interativos: permitem modificar o conteúdo apresentado de acordo com a opção selecionada pelo usuário.</li>
+            </ul>
+
+            <P>Entretanto, esse recurso não precisa ser utilizado em todas as situações. Quando a interface possui apenas pequenas diferenças entre os conteúdos apresentados, uma estrutura condicional simples pode ser suficiente. O uso de Componentes Dinâmicos é mais interessante quando existem componentes independentes que precisam ocupar a mesma região da interface.</P>
+
+                <h3>Exemplo</h3>
+
+<div class="code-block">
+
+<pre><code>&lt;script setup&gt;
+import { ref } from 'vue'
+
+import Projetos from './components/Projetos.vue'
+import Avaliacoes from './components/Avaliacoes.vue'
+import Cronograma from './components/Cronograma.vue'
+
+const abaAtual = ref('Projetos')
+
+const abas = {
+    Projetos,
+    Avaliacoes,
+    Cronograma
+}
+
+&lt;/script&gt;
+
+&lt;template&gt;
+    &lt;div&gt;
+        &lt;button
+            v-for="(_, aba) in abas"
+            :key="aba"
+            @click="abaAtual = aba"
+        &gt;
+            {{ aba }}
+        &lt;/button&gt;
+
+        &lt;component :is="abas[abaAtual]" /&gt;
+    &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+</div>
+            <P>Nesse exemplo, três componentes são importados: Projetos, Avaliacoes e Cronograma. O objeto abas associa cada nome ao respectivo componente, enquanto a variável abaAtual controla qual deles está selecionado.</P>
+            <P>Quando o usuário clica em uma das opções, o valor de abaAtual é alterado. Como essa variável é reativa, o Vue identifica a mudança e atualiza o <component :is="abas[abaAtual]" />, exibindo o componente correspondente.</P>
+            <P>Essa estrutura pode ser utilizada, por exemplo, em uma plataforma para gerenciamento de projetos de feiras científicas, permitindo que o usuário alterne entre as informações do projeto, suas avaliações e o cronograma sem precisar navegar para uma nova página.</P>
+
+            <h3> Vantagens </h3>
+            <P>A utilização de Componentes Dinâmicos pode trazer diferentes benefícios para o desenvolvimento de aplicações Vue.js:</P>
+          
+                    <ul>
+                        <li>Organização do código: permite separar diferentes partes da interface em componentes independentes.</li>
+                        <li>Flexibilidade: facilita a criação de interfaces que precisam alternar entre diferentes conteúdos.</li>
+                        <li>Reutilização: possibilita utilizar uma estrutura de controle comum para alternar entre diferentes componentes.</li>
+                        <li>Redução de condicionais: pode evitar estruturas extensas formadas por vários v-if e v-else-if.</li>
+                       
+                    </ul>
+
+                     <div class="warning-box">
+
+                        <strong>🚨⚠️ Atenção</strong>
+                        <P>Preservação de Estado</P>
+
+                        <p>Um ponto importante ao utilizar Componentes Dinâmicos está relacionado à preservação do Melhor experiência de navegação: permite realizar mudanças de conteúdo sem necessariamente alterar a rota da aplicação.
+                        </p>
+
+                        <p>Por padrão, quando um componente dinâmico deixa de ser o componente ativo, ele é desmontado. Consequentemente, estados mantidos dentro daquela instância podem ser perdidos. Esse comportamento é adequado em muitas situações, mas pode não ser desejado quando o usuário precisa retornar ao componente e continuar de onde parou.</p>
+
+                        <p>Para preservar essas instâncias, o Vue disponibiliza o componente <KeepAlive>. Quando utilizado ao redor de um componente dinâmico, ele mantém as instâncias inativas em cache em vez de destruí-las, permitindo que seu estado seja preservado enquanto o usuário alterna entre os componentes.</p>
+
+                    </div>
+
+                        <h3>Exemplo</h3>
+
+<div class="code-block">
+
+<pre><code>&lt;template&gt;
+
+    &lt;div&gt;
+
+        &lt;button
+            v-for="(_, aba) in abas"
+            :key="aba"
+            @click="abaAtual = aba"
+        &gt;
+            {{ aba }}
+        &lt;/button&gt;
+
+        &lt;KeepAlive&gt;
+
+            &lt;component :is="abas[abaAtual]" /&gt;
+
+        &lt;/KeepAlive&gt;
+
+    &lt;/div&gt;
+
+&lt;/template&gt;</code></pre>
+
+</div>
+                <P>Nesse caso, ao alternar entre os componentes, o Vue mantém as instâncias inativas em cache. Assim, quando o usuário retorna para uma determinada aba, o estado do componente pode ser preservado em vez de ser iniciado novamente.</P>
+                <p>Por exemplo, imagine que o componente Avaliacoes.vue possua um formulário parcialmente preenchido. Sem o <KeepAlive>, a troca para outra aba pode fazer com que a instância seja desmontada. Com o <KeepAlive>, a instância pode permanecer em cache e o usuário poderá retornar ao componente mantendo seu estado.</p>
+                <p>É importante observar que o <KeepAlive> deve ser utilizado de acordo com a necessidade da aplicação, pois ele mantém componentes em cache. O Vue também disponibiliza propriedades como include, exclude e max, que permitem controlar quais componentes serão armazenados e a quantidade máxima de instâncias mantidas em cache.</p>
+
+
+                <div class="summary-box">
+
+                    <h3>📌 Resumindo...</h3>
+                    <p>Os Componentes Dinâmicos permitem:</p>
+
+                    <ul>
+                        <li>Alternar entre diferentes componentes utilizando <component :is="...">;</li>
+                        <li>Criar sistemas de abas e interfaces interativas sem depender de novas rotas;</li>
+                        <li>Evitar estruturas extensas de condicionais para controlar diferentes componentes;</li>
+                        <li>Organizar diferentes partes da interface em componentes independentes;</li>
+                        <li>Utilizar <KeepAlive> quando for necessário preservar o estado dos componentes durante a alternância;</li>
+                        <li>Criar interfaces mais flexíveis e adaptáveis às interações do usuário.</li>
+                    </ul>
+                </div>
+
+
+
+            </section>
+
+
+            <!-- PROVIDE / INJECT -->
+
+            <section id="provide-inject">
+
+                <span class="section-number">
+                    07
+                </span>
+
+                <h2>Padrão Fornecer/Injetar (Provide/Inject) no Vue.js</h2>
+                <p>À medida que uma aplicação Vue.js cresce, a comunicação entre os componentes pode se tornar mais complexa, principalmente quando existe uma grande quantidade de componentes organizados em diferentes níveis de uma hierarquia. Normalmente, quando um componente precisa receber uma informação de seu componente pai, utilizamos props. Entretanto, quando essa informação precisa chegar a um componente que está vários níveis abaixo, pode ser necessário repassá-la por componentes intermediários que não utilizam aquele dado. Nesse contexto, o padrão Provide/Inject oferece uma alternativa para facilitar o compartilhamento de informações entre componentes relacionados na hierarquia.</p>
+
+                <h3>O que é?</h3>
+
+                <p>
+                    O Provide/Inject é um recurso do Vue.js que permite que um componente ancestral disponibilize valores ou dependências para seus componentes descendentes, independentemente da quantidade de níveis existentes entre eles. Para isso, o componente responsável por disponibilizar a informação utiliza provide(), enquanto o componente que necessita dela utiliza inject().
+
+                </p>
+                <p>
+                    Essa abordagem ajuda a evitar o problema conhecido como prop drilling, que ocorre quando uma propriedade precisa ser passada por vários componentes intermediários apenas para chegar até um componente mais distante. Nesse caso, os componentes intermediários precisam receber e repassar a informação mesmo sem utilizá-la diretamente.
+                </p>
+                <P>
+                    Dessa forma, o Provide/Inject permite que o componente que possui a informação e o componente que precisa consumi-la se comuniquem de maneira mais direta, sem a necessidade de utilizar props em todos os níveis da hierarquia.
+                </P>
+
+
+                <h3>Como funciona?</h3>
+                <P>O funcionamento do Provide/Inject ocorre por meio de duas funções complementares:</P>
+
+                <div class="comparison">
+
+                    <div>
+                        <h3>provide()</h3>
+                        <p>
+                            utilizada pelo componente ancestral para disponibilizar uma informação ou dependência. Ela recebe uma chave que identifica o valor e o próprio valor que será fornecido.
+
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3>inject()</h3>
+
+                        <p>
+                             utilizada pelo componente descendente para acessar uma informação que foi disponibilizada por algum componente ancestral, utilizando a mesma chave.
+
+                        </p>
+                    </div>
+
+                </div>
+                <P>Quando um componente utiliza inject(), o Vue procura pela chave informada na hierarquia de componentes. Caso existam vários componentes ancestrais fornecendo valores com a mesma chave, será utilizado o valor fornecido pelo ancestral mais próximo.</P>
+                <P>Um valor fornecido também pode ser reativo. Por exemplo, ao disponibilizar um objeto ref(), o componente que realiza o inject() recebe essa referência e mantém a conexão reativa com o componente que forneceu o valor. Dessa forma, alterações realizadas no estado reativo podem ser refletidas nos componentes que utilizam essa informação.</P>
+                <P>Além do fornecimento realizado entre componentes, o Vue também permite utilizar app.provide() no nível da aplicação. Nesse caso, a dependência disponibilizada pode ser acessada pelos componentes pertencentes àquela aplicação. Esse recurso é especialmente útil em situações como a criação de plugins e o compartilhamento de determinadas configurações da aplicação.</P>
+
+                <h3>Quando utilizar?</h3>
+                <P>O Provide/Inject pode ser utilizado quando uma informação precisa ser compartilhada entre componentes que estão distantes na hierarquia e a utilização de props resultaria em uma quantidade desnecessária de repasses entre componentes intermediários.</P>
+                <P>Alguns exemplos de utilização são:</P>
+                <ul>
+                    <li>Configurações compartilhadas: informações que precisam estar disponíveis para diferentes componentes de uma determinada parte da aplicação.</li>
+                    <li>Temas da interface: informações relacionadas ao modo de exibição, como configurações de tema.</li>
+                    <li>Preferências da aplicação: configurações que podem ser utilizadas por diferentes componentes.</li>
+                    <li>Dependências de componentes: serviços ou objetos que precisam ser disponibilizados para diferentes descendentes.</li>
+                    <li>Plugins: valores e serviços que precisam estar disponíveis em diferentes componentes da aplicação.</li>
+                </ul>
+                <p>Entretanto, o Provide/Inject não deve substituir o uso de props em todas as situações. Quando a comunicação ocorre diretamente entre um componente pai e um componente filho e a informação possui uma relação clara com essa comunicação, o uso de props continua sendo uma alternativa simples e explícita.</p>
+                <p>Da mesma forma, em aplicações que necessitam de um gerenciamento mais amplo e estruturado do estado da aplicação, pode ser mais adequado utilizar uma solução específica de gerenciamento de estado. O Provide/Inject é mais indicado para disponibilizar dependências ou informações dentro de uma determinada hierarquia de componentes ou, quando necessário, no nível da aplicação.</p>
+
+
+                <h3>Exemplo</h3>
+                <p>Considere novamente o contexto de uma plataforma para gerenciamento de projetos de uma feira científica. Imagine que o sistema possua uma informação chamada “Tema Anual da Feira”, que precisa ser apresentada em um componente responsável pelos detalhes de um projeto.</p>
+
+                <p>A estrutura da aplicação pode ser representada da seguinte forma:</p>
+
+                <p>App.vue → PainelProjetos.vue → ListaProjetos.vue → DetalhesProjeto.vue</p>
+
+                <p>Nesse cenário, o DetalhesProjeto.vue está distante do App.vue. Caso utilizássemos apenas props, seria necessário passar o temaFeira por cada componente intermediário, mesmo que eles não utilizassem diretamente essa informação.</p>
+
+                <p>Com Provide/Inject, o App.vue pode fornecer a informação e o DetalhesProjeto.vue pode acessá-la diretamente.</p>
+
+                <h4>O componente ancestral (App.vue) fornece o dado:</h4>
+
+<div class="code-block">
+
+<pre><code>&lt;script setup&gt;
+
+import { provide } from 'vue'
+import PainelProjetos from './components/PainelProjetos.vue'
+
+provide(
+    'temaFeira',
+    'Inovações Sustentáveis e Meio Ambiente'
+)
+&lt;/script&gt;
+
+&lt;template&gt;
+
+    &lt;div&gt;
+
+        &lt;h1&gt;Sistema da Feira Científica&lt;/h1&gt;
+
+        &lt;PainelProjetos /&gt;
+
+    &lt;/div&gt;
+
+&lt;/template&gt;</code></pre>
+
+</div>
+
+                
+            <P>Nesse componente, a função provide() disponibiliza o valor associado à chave temaFeira. Todos os componentes descendentes dessa hierarquia poderão acessar essa informação utilizando a mesma chave.</P>
+
+            <h4>O componente intermediário (PainelProjetos.vue) não precisa repassar o dado:</h4>
+            <div class="code-block">
+
+<pre><code>&lt;script setup&gt;
+import ListaProjetos from './ListaProjetos.vue'
+
+&lt;/script&gt;
+
+&lt;template&gt;
+
+    &lt;div class="painel"&gt;
+
+        &lt;ListaProjetos /&gt;
+
+    &lt;/div&gt;
+
+&lt;/template&gt;</code></pre>
+
+</div>
+                <P>O PainelProjetos.vue não precisa receber temaFeira por props e nem repassá-lo para ListaProjetos.vue, pois ele não utiliza essa informação.</P>
+
+                <h4>O componente descendente (DetalhesProjeto.vue) injeta o dado:</h4>
+                <div class="code-block">
+
+<pre><code>&lt;script setup&gt;
+import { inject } from 'vue'
+
+const temaAnual = inject('temaFeira')
+
+&lt;/script&gt;
+
+&lt;template&gt;
+
+    &lt;div class="detalhes-projeto"&gt;
+
+        &lt;h2&gt;Análise da Qualidade da Água&lt;/h2&gt;
+
+        &lt;p&gt;
+
+            &lt;strong&gt;Tema da Feira:&lt;/strong&gt;
+            {{ temaAnual }}
+
+        &lt;/p&gt;
+
+    &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+
+</div>
+                <P>Nesse caso, o DetalhesProjeto.vue utiliza inject() para acessar diretamente o valor fornecido pelo App.vue. Os componentes intermediários não precisam conhecer ou manipular essa informação.</P>
+                <P>Esse exemplo demonstra como o Provide/Inject pode evitar o prop drilling, mantendo os componentes intermediários livres de propriedades que não fazem parte de suas responsabilidades.</P>
+
+                <h3>Vantagens</h3>
+                <P>A utilização do Provide/Inject pode apresentar algumas vantagens no desenvolvimento de aplicações Vue.js:</P>
+                <ul>
+                  <li>Redução do Prop Drilling: evita a necessidade de passar propriedades por vários níveis de componentes que não utilizam diretamente aquela informação.</li>
+                  <li>Comunicação entre componentes distantes: permite que componentes descendentes acessem informações disponibilizadas por componentes ancestrais sem depender de vários repasses de props.</li>
+                  <li>Organização do código: reduz a quantidade de propriedades e informações que precisam ser transportadas pelos componentes intermediários.</li>
+                  <li>Reutilização de dependências: permite disponibilizar determinados serviços, configurações ou objetos para diferentes componentes de uma mesma hierarquia.</li>
+                  <li>Integração com plugins: o app.provide() permite disponibilizar dependências no nível da aplicação, sendo útil para a construção de plugins.</li>
+                </ul>
+
+                <div class="warning-box">
+
+                    <strong>⚠️ Atenção</strong>
+                    <P>uso consciente</P>
+                    <P>Embora o Provide/Inject facilite o compartilhamento de informações, seu uso deve ser realizado de maneira consciente. Diferentemente das props, o componente que recebe uma informação por inject() não deixa tão evidente, apenas pela estrutura do componente, de onde aquele valor está sendo fornecido.</P>
+                    <P>Em aplicações maiores, isso pode dificultar o rastreamento da origem de determinadas informações e tornar a manutenção mais complexa caso existam muitos provedores espalhados pela aplicação.</P>
+                    <P>Outro ponto importante está relacionado às chaves utilizadas para identificar as dependências. Em exemplos simples, é comum utilizar strings, como provide('temaFeira', valor). Porém, em aplicações maiores ou bibliotecas reutilizáveis, o Vue recomenda o uso de Symbol como chave de injeção para reduzir a possibilidade de conflitos entre diferentes dependências.</P>
+                    <P>Por isso, o Provide/Inject deve ser utilizado principalmente quando existe uma necessidade real de compartilhar uma dependência entre componentes relacionados. Quando a comunicação é simples e direta entre pai e filho, o uso de props continua sendo uma opção mais explícita e fácil de compreender.</P>
+                  
+
+                </div>
+                <div class="summary-box">
+                      <h3>📌 Resumindo...</h3>
+
+                    <p>
+                        A utilização do padrão Provide/Inject no Vue.js permite:
+
+                    </p>
+                     <ul>
+                        <li>evitar a passagem repetitiva de dados por vários níveis de componentes (prop drilling);</li>
+                        <li>disponibilizar informações de um componente ancestral diretamente para seus descendentes;</li>
+                        <li>compartilhar configurações e dependências entre diferentes componentes;</li>
+                        <li>utilizar app.provide() para disponibilizar dependências no nível da aplicação;</li>
+                        <li>manter valores reativos compartilhados entre o componente provedor e seus consumidores;</li>
+                        <li>facilitar a comunicação entre componentes distantes dentro de uma mesma hierarquia. </li>
+                    </ul>
+                </div>
+
+            </section>
+
+
+            <!-- PINIA -->
+
+            <section id="pinia">
+
+                <span class="section-number">
+                    08
+                </span>
+
+                <h2>Padrão Gerenciamento de Estado (State Management) no Vue.js</h2>
+
+                <P>À medida que uma aplicação Vue.js cresce, diferentes componentes podem precisar acessar ou modificar as mesmas informações. Quando esses componentes não possuem uma relação direta de pai e filho, compartilhar esses dados utilizando apenas props e eventos pode tornar o código mais complexo. Nesse contexto, o Gerenciamento de Estado permite organizar as informações compartilhadas em uma estrutura centralizada, facilitando seu acesso e manutenção.</P>
+
+
+                <h3>O que é?</h3>
+
+                <p>
+                    O Gerenciamento de Estado (State Management) é uma abordagem utilizada para organizar e controlar dados que são compartilhados entre diferentes partes de uma aplicação. Em vez de manter determinadas informações espalhadas pelos componentes, esses dados podem ser centralizados em uma estrutura chamada Store.
+                </p>
+                <P>A Store funciona como um local central para armazenar o estado compartilhado e os comportamentos relacionados a ele. Dessa forma, diferentes componentes podem acessar as mesmas informações e reagir às suas alterações sem precisar estabelecer uma comunicação direta entre si.</P>
+                <P>No ecossistema Vue.js, o Pinia é a biblioteca recomendada para implementar o gerenciamento de estado em novas aplicações. Ele fornece recursos para organizar o estado, os valores derivados e as ações relacionadas aos dados da aplicação. (pinia.vuejs.org)</P>
+
+                <h3>Como funciona?</h3>
+
+                <p>
+               No Pinia, uma Store pode ser organizada principalmente em três partes:</p>
+
+               <ul>
+                <li>State (Estado): representa os dados armazenados na Store, como uma lista de projetos, usuários ou itens favoritos.</li>
+                <li>Getters: permitem obter valores derivados do estado, funcionando de maneira semelhante às propriedades computadas (computed properties).</li>
+                <li>Actions (Ações): são métodos que concentram comportamentos relacionados ao estado, podendo conter regras de negócio e também operações assíncronas, como chamadas para uma API. (pinia.vuejs.org)</li>
+               </ul>
+               <P>Os componentes da aplicação podem utilizar uma mesma Store para acessar seus dados e executar suas ações. Como o estado é reativo, alterações realizadas na Store podem ser refletidas automaticamente nos componentes que utilizam essas informações.</P>
+
+
+                <h3>Quando utilizar? </h3>
+                <p>O Gerenciamento de Estado é indicado quando determinadas informações precisam ser compartilhadas entre diferentes componentes ou áreas da aplicação. Alguns exemplos são:</p>
+                <ul>
+                    <li>Informações do usuário: dados relacionados ao usuário autenticado e ao seu perfil.</li>
+                    <li>Projetos compartilhados: informações que precisam ser utilizadas em diferentes partes do sistema.</li>
+                    <li>Itens favoritos: dados modificados em uma tela e apresentados em outra.</li>
+                    <li>Configurações da aplicação: preferências utilizadas por diferentes componentes.</li>
+                </ul>
+                <p>Entretanto, nem todo dado precisa ser armazenado em uma Store. Informações utilizadas exclusivamente por um componente, como o controle de abertura de um menu ou o conteúdo temporário de um campo de busca, podem permanecer no estado local utilizando recursos como ref() ou reactive().</p>
+
+                <h3>Exemplo prático</h3>
+
+                <p>Voltando ao contexto da nossa plataforma para gerenciamento de projetos de uma feira científica, imagine que os avaliadores possam favoritar projetos para analisá-los posteriormente.</p>
+
+                <p> Nesse cenário, o número de projetos favoritos pode ser apresentado no cabeçalho da aplicação, enquanto o botão para favoritar um projeto está localizado no card de cada projeto. Como esses componentes podem estar em diferentes partes da aplicação, uma Store pode centralizar essas informações.</p>
+
+                <h4>Criando a Store (stores/favoritos.js)</h4>
+                <div class="code-block">
+
+<pre><code>import { defineStore } from 'pinia'
+import { ref, computed } from 'vue'
+
+export const useFavoritosStore = defineStore('favoritos', () =&gt; {
+
+    const projetosFavoritos = ref([])
+
+    const totalFavoritos = computed(() =&gt; {
+        return projetosFavoritos.value.length
+    })
+
+    function adicionarFavorito(projeto) {
+
+        const jaFavoritado = projetosFavoritos.value
+            .some(p =&gt; p.id === projeto.id)
+
+        if (!jaFavoritado) {
+
+            projetosFavoritos.value.push(projeto)
+
+        }
+    }
+
+    return {
+        projetosFavoritos,
+        totalFavoritos,
+        adicionarFavorito
+    }
+
+})</code></pre>
+
+</div>
+
+                    <p>Nesse exemplo, projetosFavoritos representa o State, enquanto totalFavoritos funciona como um valor derivado por meio de computed(). A função adicionarFavorito() representa uma Action, responsável por adicionar um projeto à lista e evitar registros duplicados.:</p>
+               
+
+                <h4>Utilizando a Store no cabeçalho (Cabecalho.vue)</h4>
+
+<div class="code-block">
+
+<pre><code>&lt;script setup&gt;
+import { useFavoritosStore } from '../stores/favoritos'
+
+const favoritosStore = useFavoritosStore()
+
+&lt;/script&gt;
+
+&lt;template&gt;
+
+    &lt;header&gt;
+
+        &lt;h1&gt;Feira Científica&lt;/h1&gt;
+
+        &lt;span&gt;
+
+            Projetos Favoritos:
+            {{ favoritosStore.totalFavoritos }} ⭐
+
+        &lt;/span&gt;
+
+    &lt;/header&gt;
+
+&lt;/template&gt;</code></pre>
+
+</div>
+
+            <P>O cabeçalho acessa a Store para apresentar a quantidade atual de projetos favoritos.</P>
+
+            <h4>Utilizando a Store no card do projeto (ProjetoCard.vue)</h4>
+            <div class="code-block">
+
+<pre><code>&lt;script setup&gt;
+
+import { useFavoritosStore } from '../stores/favoritos'
+
+defineProps({
+    projeto: {
+        type: Object,
+        required: true
+    }
+})
+
+const favoritosStore = useFavoritosStore()
+
+&lt;/script&gt;
+
+
+&lt;template&gt;
+
+    &lt;div class="projeto-card"&gt;
+
+        &lt;h2&gt;{{ projeto.titulo }}&lt;/h2&gt;
+
+        &lt;button
+            @click="favoritosStore.adicionarFavorito(projeto)"
+        &gt;
+            Favoritar Projeto
+        &lt;/button&gt;
+
+    &lt;/div&gt;
+
+&lt;/template&gt;</code></pre>
+
+</div>
+
+
+
+                <p>Nesse componente, a mesma Store é utilizada para executar a Action adicionarFavorito(). Quando o usuário seleciona o botão, o projeto é adicionado ao estado compartilhado. Como totalFavoritos depende desse estado, o número apresentado no cabeçalho é atualizado automaticamente.</p>
+
+                <p>Dessa forma, o cabeçalho e os cards dos projetos não precisam estabelecer uma comunicação direta, pois ambos utilizam a mesma Store para acessar e modificar as informações relacionadas aos favoritos.</p>
+
+
+                <h3>Vantagens</h3>
+                <P>A utilização do Gerenciamento de Estado pode trazer diferentes benefícios:</P>
+
+                <ul>
+                    <li><strong>Centralização do estado:</strong> reúne informações compartilhadas em uma estrutura central.</li>
+
+                    <li><strong>Redução da comunicação entre componentes:</strong> diminui a necessidade de passar dados por diversos níveis de props e eventos.</li>
+
+                    <li><strong>Organização da lógica:</strong> permite concentrar comportamentos relacionados aos dados em Stores específicas.</li>
+
+                    <li><strong>Reatividade:</strong> alterações no estado compartilhado podem ser refletidas automaticamente nos componentes que utilizam essas informações.</li>
+
+                    <li>Facilidade de manutenção:</strong> mantém dados e comportamentos relacionados organizados, facilitando a evolução da aplicação.</li>
+                </ul>
+
+
+                <div class="warning-box">
+
+                    <strong>🚨⚠️ Atenção: Evite o uso excessivo de Stores</strong>
+
+                    <p>Nem todas as informações da aplicação precisam ser armazenadas em uma Store. Utilizar o gerenciamento de estado para dados estritamente locais pode aumentar desnecessariamente a complexidade do sistema.</p>
+
+                    <p>Por exemplo, o estado responsável por controlar a abertura de um menu dropdown ou o conteúdo temporário de um campo de pesquisa normalmente pode permanecer dentro do próprio componente. A Store deve ser utilizada quando existir uma necessidade real de compartilhar determinado estado entre diferentes partes da aplicação.</p>
+
+                </div>
+                
+                <div class="summary-box">
+                      <h3>📌 Resumindo...</h3>
+
+                    <p>A utilização do padrão de Gerenciamento de Estado no Vue.js permite:</p>
+                    
+                     <ul>
+                        <li>centralizar dados compartilhados em uma Store;</li>
+                            
+                        <li>disponibilizar informações para diferentes componentes da aplicação;</li>
+
+
+                        <li>reduzir a necessidade de utilizar diversos níveis de props e eventos;</li>
+
+                        <li>organizar comportamentos relacionados ao estado compartilhado;</li>
+
+                        <li>derivar informações de forma reativa por meio dos Getters;</li>
+
+                        <li>utilizar Actions para executar comportamentos relacionados aos dados;</li>
+                        
+                        <li>utilizar o Pinia para estruturar o gerenciamento de estado da aplicação.</li>
+                    </ul>
+                </div>
+                
+            </section>
+
+            <!-- CONSIDERAÇÕES -->
+
+            <section id="consideracoes">
+
+                <span class="section-number">
+                    09
+                </span>
+
+                <h2>Considerações Finais</h2>
+
+                <p>Chegamos ao fim da nossa jornada pelos padrões e abordagens de projeto aplicados ao ecossistema Vue.js. Ao longo desta cartilha, exploramos diferentes formas de estruturar aplicações, desde o uso do &lt;script setup&gt;, a componentização e a criação de Composables, até abordagens voltadas para a organização da comunicação, do fornecimento de dados e do gerenciamento de estado.</p>
+
+                <p> Também conhecemos os Componentes Dinâmicos, o Provide/Inject, o padrão Container/Presentational, o Data Provider e o State Management. Cada uma dessas abordagens apresenta diferentes possibilidades para solucionar problemas que podem surgir durante o desenvolvimento de aplicações, contribuindo para um código mais organizado, reutilizável e de fácil manutenção quando utilizadas de maneira adequada.</p>
+
+                <p>No entanto, uma das principais lições sobre padrões de projeto e arquitetura de software é compreender quando utilizá-los e quando não utilizá-los. Como apresentado no início desta cartilha, padrões são soluções desenvolvidas para lidar com problemas recorrentes. Quando uma aplicação é simples e não apresenta o problema que determinado padrão busca solucionar, adicionar estruturas ou abstrações desnecessárias pode aumentar a complexidade do código em vez de melhorá-lo.</p>
+
+                <p>Por isso, conhecer diferentes padrões não significa utilizá-los sempre. O desenvolvimento de software exige análise e senso crítico para escolher a solução mais adequada para cada situação. Muitas vezes, a alternativa mais simples será também a mais eficiente.</p>
+
+                <p>Dessa forma, esperamos que esta cartilha tenha contribuído para ampliar sua compreensão sobre a organização de aplicações Vue.js e que os conhecimentos apresentados possam servir como ponto de partida para novos estudos e projetos. Mais importante do que memorizar padrões é compreender os problemas que eles solucionam e desenvolver a capacidade de escolher conscientemente a abordagem mais adequada para cada contexto.</p>
+
+                <div class="summary-box">
+
+                    <h3>📌 Lembre-se</h3>
+
+                    <p>
+                        Um bom projeto não é aquele que utiliza
+                        o maior número de padrões, mas aquele que
+                        utiliza as soluções adequadas para seus
+                        problemas.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- PRÓXIMOS PASSOS -->
+
+            <section id="proximos">
+
+                <span class="section-number">
+                    10
+                </span>
+
+                <h2>Próximos Passos</h2>
+
+                <p>
+                    O aprendizado em desenvolvimento de software é contínuo. Após conhecer os conceitos apresentados nesta cartilha, existem diversos caminhos que podem ser explorados para aprofundar seus conhecimentos em Vue.js e ampliar suas habilidades no desenvolvimento de aplicações.
+
+                </p>
+
+                <ul>
+                    <li><h4> Nuxt.js e Renderização do Lado do Servidor (SSR)</h4></li>
+                    <P>Explore o Nuxt.js, framework baseado em Vue.js, para conhecer conceitos como renderização do lado do servidor (SSR), geração de sites estáticos (SSG), roteamento baseado em arquivos e otimização de aplicações.</P>
+
+                     <li><h4> Roteamento com Vue Router</h4></li>
+                    <P>Aprofunde seus conhecimentos sobre o Vue Router, aprendendo a estruturar aplicações de página única (SPAs), trabalhar com diferentes rotas, controlar acesso a determinadas páginas e utilizar técnicas como carregamento sob demanda (lazy loading).</P>
+
+                     <li><h4> Testes Automatizados</h4></li>
+                    <P>Conheça ferramentas como Vitest e Vue Test Utils para desenvolver testes automatizados para componentes, Composables e outras partes da aplicação. A utilização de testes contribui para identificar problemas e proporciona maior segurança durante alterações e refatorações do código.</P>
+
+                     <li><h4> Aprofundamento no Ecossistema Vue.js</h4></li>
+                    <P>Continue acompanhando a documentação oficial e as atualizações do ecossistema Vue.js. Novos recursos, bibliotecas e práticas de desenvolvimento surgem constantemente, tornando a atualização contínua uma parte importante da formação de qualquer desenvolvedor.</P>
+                </ul>
+
+            </section>
+
+
+            <!-- FINAL -->
+
+            <div class="feedback-call">
+
+                <h2>
+                    O que você achou da cartilha?
+                </h2>
+
+                <p>
+                    Sua opinião é importante para avaliarmos
+                    e melhorar este material.
+                </p>
+
+                <a href="Feedback.html" class="btn-primary">
+                    Avaliar a cartilha ⭐
+                </a>
+
+            </div>
+
+
+        </main>
+
+    </div>
+
+
+    <!-- RODAPÉ -->
+
+    <footer>
+
+        <p>
+            Cartilha de Padrões e Abordagens de Projeto no Vue.js
+        </p>
+
+        <p>
+            © 2026
+        </p>
+
+    </footer>
+
+<script src="Js/Script.js"></script>
+</body>
+
+
+</html>
